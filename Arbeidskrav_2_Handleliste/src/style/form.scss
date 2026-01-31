@@ -1,0 +1,15 @@
+.shoppingitem-form {
+    display: flex;
+    flex-direction: column;
+
+    label {
+        text-align: left;
+    }
+
+    input {
+        margin-bottom: 1rem;
+        background-color: white;
+        padding: 1rem;
+    }
+}
+
