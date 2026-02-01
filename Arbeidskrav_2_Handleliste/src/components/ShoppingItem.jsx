@@ -1,17 +1,11 @@
 import '../style/shoppingitem.scss'
 
-export default function ShoppingItem({id, ware, amount}) {
-    //Forhindrer at brukeren kan skrive tall lavere enn 0 ved å forandre den illegale verdien til 1.
-    //Små deler tatt fra dette Google søket:
-    //html prevent input outside of number range
-    //Chatlogg
-    //https://share.google/aimode/akaVDJaR48CTcF4FM
-    //url
-    //https://www.google.com/search?q=html+prevent+input+outside+of+number+range&sca_esv=1fb5ba756bd76908&sxsrf=ANbL-n6KoV8sAkz0RR8yyOyEdPqLq0q76A%3A1769884404060&ei=9Ep-abauA5PWwPAPzpeKwQo&ved=0ahUKEwi2-MmZtbaSAxUTKxAIHc6LIqgQ4dUDCBA&uact=5&oq=html+prevent+input+outside+of+number+range&gs_lp=Egxnd3Mtd2l6LXNlcnAiKmh0bWwgcHJldmVudCBpbnB1dCBvdXRzaWRlIG9mIG51bWJlciByYW5nZTIFECEYoAEyBRAhGJ8FMgUQIRifBTIFECEYnwVIwGJQAFiNYXABeAGQAQCYAbcBoAG0IaoBBTI0LjE4uAEDyAEA-AEBmAIroALAIqgCCsICBxAjGCcY6gLCAgcQLhgnGOoCwgIMECMYgAQYExgnGIoFwgIEECMYJ8ICChAAGIAEGEMYigXCAgsQABiABBixAxiDAcICCBAAGIAEGLEDwgINEAAYgAQYsQMYQxiKBcICBRAAGIAEwgIGEAAYFhgewgIIEAAYFhgKGB7CAgUQABjvBcICCBAAGIAEGKIEwgIHECEYoAEYCsICBBAhGBWYAwXxBRvho5Wk6bvakgcFMjEuMjKgB47wAbIHBTIwLjIyuAe7IsIHBjEuMzkuM8gHXIAIAA&sclient=gws-wiz-serp
+export default function ShoppingItem({id, ware, amount, setShoppingList}) {
+    //Varen fjernes fra listen hvis antall blir 0 eller mindre.
     const validateNumber = (e) => {
         const value = parseInt(e.target.value)
-        if (value < 1) {
-            e.target.value = 1;
+        if (value < 1 || value == "") {
+            setShoppingList((prev) => prev.filter(item => item.id !== id))
         }
     }
 
@@ -24,7 +18,7 @@ export default function ShoppingItem({id, ware, amount}) {
             <label htmlFor={"shopping-item-"+ware} className="ware-label">{ware}</label>
             
             <label htmlFor={"shoppingitem-amount-"+ware}></label>
-            <input name="amount" id={"shoppingitem-amount-"+ware} type="number" defaultValue={amount} min="1" onInput={validateNumber}></input>
+            <input name="amount" id={"shoppingitem-amount-"+ware} type="number" defaultValue={amount} onInput={validateNumber}></input>
         </li> 
     )
     }
@@ -35,7 +29,7 @@ export default function ShoppingItem({id, ware, amount}) {
             <label htmlFor={"shopping-item-"+ware} className="ware-label">{ware}</label>
             
             <label htmlFor={"shoppingitem-amount-"+ware}></label>
-            <input name="amount" id={"shoppingitem-amount-"+ware} type="number" defaultValue={amount} min="1" onInput={validateNumber}></input>
+            <input name="amount" id={"shoppingitem-amount-"+ware} type="number" defaultValue={amount} onInput={validateNumber}></input>
         </li>
     )
     }

@@ -24,8 +24,8 @@ function App() {
   return (
     <main>
       <h1>Handleliste</h1>
-      <AddForm shoppingItem={shoppingItem} setShoppingItem={setShoppingItem} setShoppingList={setShoppingList} shoppingList={shoppingList}/>
-      <ShoppingList shoppingListItems={shoppingList}/>
+      <AddForm shoppingItem={shoppingItem} setShoppingItem={setShoppingItem} setShoppingList={setShoppingList} shoppingListItems={shoppingList}/>
+      <ShoppingList shoppingListItems={shoppingList} setShoppingList={setShoppingList}/>
     </main>
   )
 }
