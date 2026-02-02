@@ -19,8 +19,11 @@ export default function AddForm({shoppingItem, setShoppingItem, setShoppingList,
         const uniqueId = crypto.randomUUID()
 
         //Forhindrer bruker å skrive inn en vare med ingen verdi eller et antall mindre enn 1.
-        if (shoppingItemWare.value == "" || shoppingItemAmount.value < 1) {
-            alert("Varen må ha et navn og antall må være minst 1.")
+        if (shoppingItemWare.value == "") {
+            alert("Varen må ha et navn.")
+        }
+        else if (shoppingItemAmount.value < 1) {
+            alert("Antall må være høyere enn 1.")
         }
         //Forhindrer duplikatvarer i listen.
         //Søkeord: javascript check if object value exists in list
